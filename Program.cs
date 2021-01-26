@@ -8,17 +8,26 @@ namespace InterviewTask17
         private static int M = 5;
         private static int rez = 1;
         private static string[] Answers = new String[] { "No", "Yes" };
+        static Action<int>[] methods = new Action<int>[] { IsZero, Non };
 
         static void Main(string[] args)
         {
-            bool b = IsZero(0);
-            int a = b2i(b);
+            IsZero(0);
+            int a = b2i(i2b(rez));
             Console.WriteLine("Array contains zeros - " + Answers[a]);
         }
 
-        static bool IsZero(int n)
+        static void IsZero(int n)
         {
-            return !i2b(M - n) && (i2b(rez *= N[n]) || IsZero(n + 1));
+            rez *= N[n];
+            int t = (M - 1 - n) * rez;
+            t = b2i(i2b(t));
+            methods[t].Invoke(n + 1);
+        }
+
+        static void Non(int n)
+        {
+
         }
 
         static bool i2b(int i)
