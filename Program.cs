@@ -11,9 +11,9 @@ namespace InterviewTask17
         static Action<int>[] methods = new Action<int>[] { Non, IsZero };
 
         static void Main(string[] args)
-        {                      
+        {                  
             IsZero(0);
-            int a = (rez * rez).CompareTo(0);
+            int a = Sing(rez);
             Console.WriteLine("Array contains zeros - " + Answers[a]);
         }
 
@@ -22,13 +22,21 @@ namespace InterviewTask17
             rez *= N[n];
             n++;
             int t = M / n;
-            t = t.CompareTo(0) * (rez*rez).CompareTo(0);
+            t = Sing(t) * Sing(rez);
             methods[t].Invoke(n);
         }
 
         static void Non(int n)
         {
 
-        }       
+        }
+
+        static int Sing(int i)
+        {
+            i *= i;
+            return (int)(uint)(i / (i - 0.1));
+        }
+
+
     }
 }
